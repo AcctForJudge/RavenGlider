@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://blk4frv0c36lr"]
+
+[ext_resource type="Texture2D" uid="uid://fejucsc2y0a3" path="res://Assets/raven.png" id="1_ch86h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3dryh"]
+atlas = ExtResource("1_ch86h")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ekc5w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3dryh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qrq0c"]
+radius = 4.0
+height = 10.0
+
+[node name="Raven" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ekc5w")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 3)
+shape = SubResource("CapsuleShape2D_qrq0c")
