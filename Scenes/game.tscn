@@ -20,5 +20,5 @@ position = Vector2(2, -44)
 script = ExtResource("3_3dryh")
 
 [node name="Camera2D" type="Camera2D" parent="Raven"]
-position = Vector2(-2, 44)
+position = Vector2(-2, -11)
 zoom = Vector2(4, 4)
