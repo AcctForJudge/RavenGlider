@@ -1,12 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://brn1r6bwsmst1"]
+[gd_scene load_steps=8 format=3 uid="uid://brn1r6bwsmst1"]
 
 [ext_resource type="PackedScene" uid="uid://xmmx8ymyycji" path="res://Scenes/chunk_1.tscn" id="1_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://dsatpofg44dji" path="res://Scenes/chunk_2.tscn" id="2_3dryh"]
 [ext_resource type="PackedScene" uid="uid://blk4frv0c36lr" path="res://Scenes/raven.tscn" id="2_wrm1d"]
 [ext_resource type="Script" uid="uid://di4slljfgqw6g" path="res://Scripts/raven.gd" id="3_3dryh"]
+[ext_resource type="PackedScene" uid="uid://bhg8bt73m8ev1" path="res://Scenes/chunk_3.tscn" id="3_wowpa"]
+[ext_resource type="PackedScene" uid="uid://dtf2jexrthnp0" path="res://Scenes/chunk_4.tscn" id="4_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://di4wcus4v8me0" path="res://Scenes/chunk_5.tscn" id="5_v158k"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Chunk1" parent="." instance=ExtResource("1_qxrlw")]
+
+[node name="Chunk2" parent="." instance=ExtResource("2_3dryh")]
+position = Vector2(512, 0)
+
+[node name="Chunk3" parent="." instance=ExtResource("3_wowpa")]
+position = Vector2(1024, 0)
+
+[node name="chunk_4" parent="." instance=ExtResource("4_1l0tm")]
+position = Vector2(1535, 0)
+
+[node name="chunk_5" parent="." instance=ExtResource("5_v158k")]
+position = Vector2(2047, 0)
 
 [node name="Raven" parent="." instance=ExtResource("2_wrm1d")]
 position = Vector2(2, -44)
