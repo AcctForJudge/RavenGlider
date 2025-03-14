@@ -1,20 +1,67 @@
-[gd_scene load_steps=5 format=3 uid="uid://blk4frv0c36lr"]
+[gd_scene load_steps=11 format=3 uid="uid://blk4frv0c36lr"]
 
 [ext_resource type="Texture2D" uid="uid://fejucsc2y0a3" path="res://Assets/raven.png" id="1_ch86h"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3dryh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch86h"]
 atlas = ExtResource("1_ch86h")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekc5w"]
+atlas = ExtResource("1_ch86h")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrq0c"]
+atlas = ExtResource("1_ch86h")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdvdd"]
+atlas = ExtResource("1_ch86h")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b814w"]
+atlas = ExtResource("1_ch86h")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5qie"]
+atlas = ExtResource("1_ch86h")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djdlg"]
+atlas = ExtResource("1_ch86h")
+region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ekc5w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3dryh")
+"texture": SubResource("AtlasTexture_ch86h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekc5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrq0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdvdd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b814w")
 }],
 "loop": true,
-"name": &"idle",
-"speed": 5.0
+"name": &"fly_input",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5qie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djdlg")
+}],
+"loop": true,
+"name": &"fly_no_input",
+"speed": 2.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qrq0c"]
@@ -25,7 +72,9 @@ height = 10.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ekc5w")
-animation = &"idle"
+animation = &"fly_input"
+autoplay = "fly_no_input"
+frame_progress = 0.817831
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 3)

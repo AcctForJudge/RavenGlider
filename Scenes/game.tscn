@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brn1r6bwsmst1"]
+[gd_scene load_steps=10 format=3 uid="uid://brn1r6bwsmst1"]
 
 [ext_resource type="PackedScene" uid="uid://xmmx8ymyycji" path="res://Scenes/chunk_1.tscn" id="1_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://dsatpofg44dji" path="res://Scenes/chunk_2.tscn" id="2_3dryh"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://dtf2jexrthnp0" path="res://Scenes/chunk_4.tscn" id="4_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://di4wcus4v8me0" path="res://Scenes/chunk_5.tscn" id="5_v158k"]
 [ext_resource type="Script" uid="uid://vu51pmj3pn20" path="res://Scripts/generate_game.gd" id="8_v158k"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v158k"]
 
 [node name="Game" type="Node2D"]
 
@@ -22,3 +24,10 @@ script = ExtResource("3_3dryh")
 [node name="Camera2D" type="Camera2D" parent="Raven"]
 position = Vector2(-2, -11)
 zoom = Vector2(4, 4)
+
+[node name="upperboundary" type="StaticBody2D" parent="."]
+position = Vector2(0, -200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="upperboundary"]
+rotation = -3.14159
+shape = SubResource("WorldBoundaryShape2D_v158k")

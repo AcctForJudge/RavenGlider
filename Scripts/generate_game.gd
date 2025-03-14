@@ -24,7 +24,7 @@ func _spawn_chunk():
 	if chunk_scenes.is_empty():
 		return
 
-	var chunk_scene = chunk_scenes[randi() % chunk_scenes.size()]
+	var chunk_scene = chunk_scenes.pick_random()
 	var new_chunk = chunk_scene.instantiate()
 
 	if spawned_chunks.is_empty():
@@ -35,12 +35,14 @@ func _spawn_chunk():
 
 	spawned_chunks.append(new_chunk)
 	add_child(new_chunk)
+	
+	_spawn_npcs()
 
 	# Remove old chunks
 	if spawned_chunks.size() > 5:
 		var old_chunk = spawned_chunks.pop_front()
 		old_chunk.queue_free()
-	_spawn_npcs()
+	
 func _spawn_npcs():
 	var random_npcs = randi_range(2,6)
 	for i in range(random_npcs):

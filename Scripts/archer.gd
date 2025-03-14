@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	var random_archer = "archer" + str((randi() % 8) + 1) + "_idle"
-	self.sprite.play(random_archer)
+	sprite.play(random_archer)
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 

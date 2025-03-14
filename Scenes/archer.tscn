@@ -1000,7 +1000,7 @@ script = ExtResource("1_fhmuk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fierw")
 animation = &"archer3_idle"
-frame_progress = 0.594845
+frame_progress = 0.0458712
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 12)
