@@ -1,5 +1,6 @@
-[gd_scene load_steps=139 format=3 uid="uid://b7wkonl4f5hqm"]
+[gd_scene load_steps=140 format=3 uid="uid://b7wkonl4f5hqm"]
 
+[ext_resource type="Script" uid="uid://bqiusqnmnsdse" path="res://Scripts/archer.gd" id="1_fhmuk"]
 [ext_resource type="Texture2D" uid="uid://dmj5nu2uen034" path="res://Assets/sprites/GandalfHardcore Archer/GandalfHardcore Archer black sheet.png" id="1_qp52x"]
 [ext_resource type="Texture2D" uid="uid://cf1bfbf88hf1l" path="res://Assets/sprites/GandalfHardcore Archer/GandalfHardcore Archer blue sheet.png" id="2_fhmuk"]
 [ext_resource type="Texture2D" uid="uid://cjf3h788vspdd" path="res://Assets/sprites/GandalfHardcore Archer/GandalfHardcore Archer brown sheet.png" id="3_jhg76"]
@@ -991,12 +992,15 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b5787"]
 height = 40.0
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="Archer" type="CharacterBody2D"]
+z_index = 2
+scale = Vector2(-0.75, 0.75)
+script = ExtResource("1_fhmuk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fierw")
-animation = &"archer1_idle"
-frame_progress = 0.460814
+animation = &"archer3_idle"
+frame_progress = 0.594845
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 12)

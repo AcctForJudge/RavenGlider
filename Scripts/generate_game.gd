@@ -2,6 +2,7 @@ extends Node2D
 
 #chatgpt help lol
 @export var chunk_scenes: Array[PackedScene] # Assign chunk scenes in the editor
+var npcs =[]
 var spawned_chunks = []
 
 var chunk_size = 512 # 32 tiles, 16 pixels width, 32 * 16 = 512
@@ -39,3 +40,18 @@ func _spawn_chunk():
 	if spawned_chunks.size() > 5:
 		var old_chunk = spawned_chunks.pop_front()
 		old_chunk.queue_free()
+	_spawn_npcs()
+func _spawn_npcs():
+	var random_npcs = randi_range(2,6)
+	for i in range(random_npcs):
+		var npc:PackedScene = load("res://Scenes/archer.tscn")
+		var new_npc = npc.instantiate()
+		npcs.append(new_npc)
+		var x = randi_range(-50, 50)
+		new_npc.position = spawned_chunks[-1].get_node("Marker2D").global_position + Vector2(x, -40)
+		add_child(new_npc)
+	
+	if npcs.size() > 30:
+		var old_npc = npcs.pop_front()
+		old_npc.queue_free()
+	

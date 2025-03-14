@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bhg8bt73m8ev1" path="res://Scenes/chunk_3.tscn" id="3_wowpa"]
 [ext_resource type="PackedScene" uid="uid://dtf2jexrthnp0" path="res://Scenes/chunk_4.tscn" id="4_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://di4wcus4v8me0" path="res://Scenes/chunk_5.tscn" id="5_v158k"]
-[ext_resource type="Script" uid="uid://vu51pmj3pn20" path="res://Scripts/generate_chunks.gd" id="8_v158k"]
+[ext_resource type="Script" uid="uid://vu51pmj3pn20" path="res://Scripts/generate_game.gd" id="8_v158k"]
 
 [node name="Game" type="Node2D"]
 
