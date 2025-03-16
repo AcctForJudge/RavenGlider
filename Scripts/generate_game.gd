@@ -17,8 +17,12 @@ func _process(_delta):
 		_spawn_chunk()
 
 func _spawn_initial_chunks():
-	for i in range(3): # Start with 3 chunks
-		_spawn_chunk()
+	var first_chunk = chunk_scenes[0].instantiate()
+	first_chunk.position = Vector2.ZERO
+	spawned_chunks.append(first_chunk)
+	add_child(first_chunk)
+	_spawn_chunk()
+	_spawn_chunk()
 
 func _spawn_chunk():
 	if chunk_scenes.is_empty():
@@ -44,13 +48,13 @@ func _spawn_chunk():
 		old_chunk.queue_free()
 	
 func _spawn_npcs():
-	var random_npcs = randi_range(1,3)
+	var random_npcs = randi_range(1,3) * 2
 	for i in range(random_npcs):
 		var npc:PackedScene = load("res://Scenes/archer.tscn")
 		var new_npc = npc.instantiate()
 		npcs.append(new_npc)
-		var x = randi_range(-100, 100)
-		new_npc.position = spawned_chunks[-1].get_node("Marker2D").global_position + Vector2(x, -100)
+		var x = randi_range(-250, -50)
+		new_npc.position = spawned_chunks[-1].get_node("Marker2D").global_position + Vector2(x, -900)
 		add_child(new_npc)
 	
 	if npcs.size() > 30:

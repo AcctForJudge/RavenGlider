@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var max_speed = 500
-@export var min_speed = 50
+@export var min_speed = 100
 @export var jump = -100
 @export var acceleration = 5
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -9,7 +9,7 @@ extends CharacterBody2D
 var gravity = 700 #980 default
 
 func _ready() -> void:
-	self.velocity.x = max_speed / 5
+	self.velocity.x = min_speed
 	
 func _physics_process(delta: float) -> void:
 	self.velocity.y += gravity * delta
