@@ -69,6 +69,8 @@ radius = 4.0
 height = 10.0
 
 [node name="Raven" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ekc5w")

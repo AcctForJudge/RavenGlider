@@ -12,8 +12,14 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	self.velocity.y += gravity * delta
-	var distance = self.global_position.x - player.global_position.x
-	#if distance > 50                                                       :
-		#look_at(player.position)
-	
+	sprite.flip_h = player.global_position.x > self.global_position.x
+		
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	print(body, " has entered me uwu")
+
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.

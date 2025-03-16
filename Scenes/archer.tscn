@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=3 uid="uid://b7wkonl4f5hqm"]
+[gd_scene load_steps=141 format=3 uid="uid://b7wkonl4f5hqm"]
 
 [ext_resource type="Script" uid="uid://bqiusqnmnsdse" path="res://Scripts/archer.gd" id="1_fhmuk"]
 [ext_resource type="Texture2D" uid="uid://dmj5nu2uen034" path="res://Assets/sprites/GandalfHardcore Archer/GandalfHardcore Archer black sheet.png" id="1_qp52x"]
@@ -992,6 +992,8 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b5787"]
 height = 40.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhmuk"]
+
 [node name="Archer" type="CharacterBody2D"]
 z_index = 2
 scale = Vector2(-0.75, 0.75)
@@ -1005,3 +1007,15 @@ frame_progress = 0.0458712
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 12)
 shape = SubResource("CapsuleShape2D_b5787")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.33333, -78.6667)
+scale = Vector2(20, 20)
+shape = SubResource("CircleShape2D_fhmuk")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
