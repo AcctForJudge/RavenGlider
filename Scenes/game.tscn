@@ -24,7 +24,7 @@ script = ExtResource("3_3dryh")
 
 [node name="Camera2D" type="Camera2D" parent="Raven"]
 position = Vector2(-2, -11)
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="upperboundary" type="StaticBody2D" parent="."]
 position = Vector2(1, -200)

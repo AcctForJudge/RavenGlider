@@ -1001,8 +1001,8 @@ script = ExtResource("1_fhmuk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fierw")
-animation = &"archer3_idle"
-frame_progress = 0.0458712
+animation = &"archer1_shoot"
+frame_progress = 0.417269
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-7, 12)
@@ -1013,8 +1013,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-1.33333, -78.6667)
-scale = Vector2(20, 20)
+scale = Vector2(50, 50)
 shape = SubResource("CircleShape2D_fhmuk")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
