@@ -993,6 +993,7 @@ animations = [{
 height = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhmuk"]
+radius = 7.89622
 
 [node name="Archer" type="CharacterBody2D"]
 z_index = 2
@@ -1016,5 +1017,4 @@ collision_mask = 2
 scale = Vector2(50, 50)
 shape = SubResource("CircleShape2D_fhmuk")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="AttackTimer" type="Timer" parent="."]
