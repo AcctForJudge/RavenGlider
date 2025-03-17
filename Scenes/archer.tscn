@@ -1043,5 +1043,11 @@ delay_in_seconds = "0.0"
 [node name="Attack" type="Node" parent="StateChart/Root"]
 script = ExtResource("12_0lcm4")
 
+[node name="ToIdle" type="Node" parent="StateChart/Root/Attack"]
+script = ExtResource("13_tcsy7")
+to = NodePath("../../Idle")
+event = &"Player Exited"
+delay_in_seconds = "0.0"
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
