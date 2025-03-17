@@ -1,4 +1,4 @@
-[gd_scene load_steps=141 format=3 uid="uid://b7wkonl4f5hqm"]
+[gd_scene load_steps=145 format=3 uid="uid://b7wkonl4f5hqm"]
 
 [ext_resource type="Script" uid="uid://bqiusqnmnsdse" path="res://Scripts/archer.gd" id="1_fhmuk"]
 [ext_resource type="Texture2D" uid="uid://dmj5nu2uen034" path="res://Assets/sprites/GandalfHardcore Archer/GandalfHardcore Archer black sheet.png" id="1_qp52x"]
@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://dihrkavlpnc1k" path="res://Assets/sprites/GandalfHardcore Archer/GandalfHardcore Archer red sheet.png" id="6_87h5s"]
 [ext_resource type="Texture2D" uid="uid://brl4vs3lge32a" path="res://Assets/sprites/GandalfHardcore Archer/GandalfHardcore Archer sheet.png" id="7_sk880"]
 [ext_resource type="Texture2D" uid="uid://rbigofiwcqvb" path="res://Assets/sprites/GandalfHardcore Archer/GandalfHardcore Archer yellow sheet.png" id="8_0lcm4"]
+[ext_resource type="Script" uid="uid://17fqu3xahv7a" path="res://addons/godot_state_charts/state_chart.gd" id="10_87h5s"]
+[ext_resource type="Script" uid="uid://drd58b7u0c8me" path="res://addons/godot_state_charts/compound_state.gd" id="11_sk880"]
+[ext_resource type="Script" uid="uid://bygrosr3b5fmr" path="res://addons/godot_state_charts/atomic_state.gd" id="12_0lcm4"]
+[ext_resource type="Script" uid="uid://b3cbdpkjv1g5p" path="res://addons/godot_state_charts/transition.gd" id="13_tcsy7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tcsy7"]
 atlas = ExtResource("1_qp52x")
@@ -993,7 +997,7 @@ animations = [{
 height = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fhmuk"]
-radius = 7.89622
+radius = 5.7987
 
 [node name="Archer" type="CharacterBody2D"]
 z_index = 2
@@ -1018,3 +1022,26 @@ scale = Vector2(50, 50)
 shape = SubResource("CircleShape2D_fhmuk")
 
 [node name="AttackTimer" type="Timer" parent="."]
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("10_87h5s")
+metadata/_custom_type_script = "uid://17fqu3xahv7a"
+
+[node name="Root" type="Node" parent="StateChart"]
+script = ExtResource("11_sk880")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/Root"]
+script = ExtResource("12_0lcm4")
+
+[node name="ToAttack" type="Node" parent="StateChart/Root/Idle"]
+script = ExtResource("13_tcsy7")
+to = NodePath("../../Attack")
+event = &"Player Entered"
+delay_in_seconds = "0.0"
+
+[node name="Attack" type="Node" parent="StateChart/Root"]
+script = ExtResource("12_0lcm4")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
