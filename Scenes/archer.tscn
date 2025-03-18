@@ -1047,11 +1047,12 @@ to = NodePath("../../Idle")
 event = &"Player Exited"
 delay_in_seconds = "0.0"
 
-[node name="AttackTimer" type="Timer" parent="StateChart/Root/Attack"]
+[node name="AttackTimer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="state_entered" from="StateChart/Root/Attack" to="." method="_on_attack_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/Root/Attack" to="." method="_on_attack_state_physics_processing"]
-[connection signal="timeout" from="StateChart/Root/Attack/AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
