@@ -1021,8 +1021,6 @@ collision_mask = 2
 scale = Vector2(50, 50)
 shape = SubResource("CircleShape2D_fhmuk")
 
-[node name="AttackTimer" type="Timer" parent="."]
-
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("10_87h5s")
 metadata/_custom_type_script = "uid://17fqu3xahv7a"
@@ -1049,5 +1047,11 @@ to = NodePath("../../Idle")
 event = &"Player Exited"
 delay_in_seconds = "0.0"
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[node name="AttackTimer" type="Timer" parent="StateChart/Root/Attack"]
+wait_time = 2.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="state_entered" from="StateChart/Root/Attack" to="." method="_on_attack_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Root/Attack" to="." method="_on_attack_state_physics_processing"]
+[connection signal="timeout" from="StateChart/Root/Attack/AttackTimer" to="." method="_on_attack_timer_timeout"]
