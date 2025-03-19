@@ -12,6 +12,7 @@ var can_attack = false
 var arrows = []
 var arrow_speed = 500
 
+
 func _ready() -> void:
 	random_number = str((randi() % 8) + 1)
 	var random_archer = "archer" + random_number + "_idle"
@@ -34,7 +35,11 @@ func shoot_arrow():
 		call_deferred("add_child", arrow)
 		var dirn = (player.global_position - self.global_position).normalized()
 		arrow.linear_velocity = dirn * arrow_speed
-			
+		print(arrows.size())
+		if arrows.size() > 10:
+			var a = arrows.pop_front()
+			if a:
+				a.queue_free()
 		attack_timer.start()
 		can_attack = false
 	
@@ -51,11 +56,9 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_attack_state_entered() -> void:
 	can_attack = true
-	#print()	
-	#print("entered attack state")
-	#print()
-	shoot_arrow()
-	
+	var random_archer = "archer" + random_number + "_shoot"
+	sprite.play(random_archer)
+	attack_timer.start()
 	
 func _on_attack_timer_timeout() -> void:
 	can_attack = true

@@ -6,11 +6,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	pass
 
-
-
-
 func _on_body_entered(body: Node) -> void:
-	print(body)
-	if body.name not in ["Archer", "Arrow"]:
+	if body.name not in ["Archer", "Arrow", "Ground"]:
 		queue_free()
 	#print(body)
