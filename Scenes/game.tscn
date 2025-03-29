@@ -27,7 +27,7 @@ position = Vector2(-2, -11)
 zoom = Vector2(2, 2)
 
 [node name="upperboundary" type="StaticBody2D" parent="."]
-position = Vector2(1, -200)
+position = Vector2(1, -202)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="upperboundary"]
 rotation = -3.14159

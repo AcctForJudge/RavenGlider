@@ -2,15 +2,16 @@ extends CharacterBody2D
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var player: CharacterBody2D = get_node("../../Raven")
+
 @onready var state_chart:StateChart = $StateChart
 
  
 
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = 700
 var random_number
 
 var arrows = []
-var arrow_speed = 400
+var arrow_speed = 300
 
 
 
@@ -18,13 +19,13 @@ func _ready() -> void:
 	random_number = str((randi() % 8) + 1)
 	var random_archer = "archer" + random_number + "_idle"
 	sprite.play(random_archer)
+	
 
 	
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		self.velocity.y += gravity * delta
 	sprite.flip_h = player.global_position.x > self.global_position.x
-	
 	#print(can_attack)
 	move_and_slide()
 
@@ -33,21 +34,22 @@ func shoot_arrow():
 	var arrow:RigidBody2D = new_arrow.instantiate()
 	var distance:Vector2 = player.global_position - $Marker2D.global_position
 	
-	if self.sprite.flip_h:
-		$Marker2D.position.x = -25.333
-		arrow.rotation = PI / 2 - atan(distance.y / distance.x)
-	else:
-		arrow.rotation = PI / 2 - atan(distance.y / distance.x)
+ 
 
+	if player.velocity.x > 300:
+		sprite.speed_scale = 2
+		arrow_speed *= 2
 		
 	arrows.append(arrow)
 	$Marker2D.call_deferred("add_child", arrow)
 	var dirn = distance.normalized()
-	if distance.length() > 30:
-		arrow.linear_velocity = dirn * arrow_speed * 1.5
+	arrow.get_child(0).flip_h = sprite.flip_h
+	arrow.linear_velocity = dirn * arrow_speed
+	if distance.length() > 20:
+		arrow.rotation = PI - arrow.linear_velocity.angle() if sprite.flip_h else arrow.linear_velocity.angle() + PI / 4
 	else:
-		arrow.linear_velocity = dirn * arrow_speed
-	
+		if sprite.flip_h:
+			arrow.rotation = - PI
 	#print(arrows.size())
 	if arrows.size() > 10:
 		var a = arrows.pop_front()
@@ -74,5 +76,5 @@ func _on_attack_state_entered() -> void:
 
 
 func _on_animated_sprite_2d_frame_changed() -> void:
-	if sprite.animation.ends_with("shoot") and sprite.frame == 8:
+	if sprite.animation.ends_with("shoot") and sprite.frame == 9:
 		shoot_arrow()
